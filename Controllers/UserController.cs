@@ -87,6 +87,7 @@ namespace WebApi.Cotrollers
       {
         var usrmail = new MailRequest();
         usrmail.ToEmail = tblUser.Email;
+        usrmail.Subject = "job access created";
         usrmail.Body = "some checking message";
         await _mailService.SendEmailAsync(usrmail);
         tblUser.Password = BC.HashPassword(tblUser.Password);
