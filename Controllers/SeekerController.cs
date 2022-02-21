@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
@@ -78,10 +73,18 @@ namespace WebApi.Controllers
     [HttpPost]
     public async Task<ActionResult<TblSeeker>> PostTblSeeker(TblSeeker tblSeeker)
     {
-      _context.TblSeekers.Add(tblSeeker);
-      await _context.SaveChangesAsync();
+      TblUser formuser = _context.TblUsers.Single(data => data.Id == tblSeeker.UserId);
+      // Console.WriteLine($"\n\n{formuser.Email}\n\n");
+      // Console.WriteLine($"\n\n{formuser}\n\n");
+      if (formuser.Type == "seeker")
+      {
+        _context.TblSeekers.Add(tblSeeker);
+        await _context.SaveChangesAsync();
+        // return StatusCode(StatusCodes.Status201Created);
+        return CreatedAtAction("GetTblSeeker",  new { id = tblSeeker.Id }, tblSeeker);
+      }
+      return StatusCode(StatusCodes.Status403Forbidden);
 
-      return CreatedAtAction("GetTblSeeker", new { id = tblSeeker.Id }, tblSeeker);
     }
 
     // DELETE: api/Seeker/5

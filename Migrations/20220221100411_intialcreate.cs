@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace WebApi.Migrations
 {
-    public partial class finalModeldata : Migration
+    public partial class intialcreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,12 +28,9 @@ namespace WebApi.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    firstname = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
-                    lastname = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
                     username = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
                     email = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
                     password = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
-                    confirm_password = table.Column<string>(type: "varchar(255)", unicode: false, maxLength: 255, nullable: true),
                     type = table.Column<string>(type: "varchar(25)", unicode: false, maxLength: 25, nullable: true)
                 },
                 constraints: table =>
@@ -185,16 +182,41 @@ namespace WebApi.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TblSeekerExperience",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StartingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CompletionDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Percentage = table.Column<double>(type: "float", nullable: true),
+                    InstituteName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DegereName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    SeekerId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TblSeekerExperience", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TblSeekerExperience_tbl_seeker_SeekerId",
+                        column: x => x.SeekerId,
+                        principalTable: "tbl_seeker",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "tbl_jobs_applied",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     job_id = table.Column<int>(type: "int", nullable: true),
                     seeker_id = table.Column<int>(type: "int", nullable: true),
                     applied_on = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
                 constraints: table =>
                 {
+                    table.PrimaryKey("PK_tbl_jobs_applied", x => x.Id);
                     table.ForeignKey(
                         name: "FK_tbl_jobs_applied_tbl_jobs_job_id",
                         column: x => x.job_id,
@@ -258,6 +280,11 @@ namespace WebApi.Migrations
                 column: "email",
                 unique: true,
                 filter: "[email] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TblSeekerExperience_SeekerId",
+                table: "TblSeekerExperience",
+                column: "SeekerId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -275,13 +302,16 @@ namespace WebApi.Migrations
                 name: "tbl_seeker_skills");
 
             migrationBuilder.DropTable(
+                name: "TblSeekerExperience");
+
+            migrationBuilder.DropTable(
                 name: "tbl_jobs");
 
             migrationBuilder.DropTable(
-                name: "tbl_seeker");
+                name: "tbl_skillset");
 
             migrationBuilder.DropTable(
-                name: "tbl_skillset");
+                name: "tbl_seeker");
 
             migrationBuilder.DropTable(
                 name: "tbl_company");

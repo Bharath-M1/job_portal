@@ -12,8 +12,8 @@ using WebApi.Data;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(jobPortalDbContext))]
-    [Migration("20220221051904_finalMigrationEmail")]
-    partial class finalMigrationEmail
+    [Migration("20220221100411_intialcreate")]
+    partial class intialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using WebApi.Data;
 using WebApi.Helpers;
@@ -16,7 +17,8 @@ var builder = WebApplication.CreateBuilder(args);
           builder.WithOrigins("http://localhost:5000/", "https://localhost:5001/");
         });
     });
-  services.AddControllers();
+  services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
   services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
   services.AddTransient<IMailService, MailService>();
   services.AddDbContext<jobPortalDbContext>(options =>
