@@ -18,14 +18,6 @@ namespace WebApi.Models
 
     [Key]
     public int Id { get; set; }
-    // [Column("firstname")]
-    // [StringLength(255)]
-    // [Unicode(false)]
-    // public string Firstname { get; set; } = null!;
-    // [Column("lastname")]
-    // [StringLength(255)]
-    // [Unicode(false)]
-    // public string Lastname { get; set; } = null!;
     [Column("username")]
     [StringLength(255)]
     [Unicode(false)]

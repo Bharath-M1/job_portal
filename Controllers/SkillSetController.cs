@@ -43,7 +43,6 @@ namespace WebApi.Controllers
     }
 
     // PUT: api/SkillSet/5
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblSkillset(int id, TblSkillset tblSkillset)
     {
@@ -74,7 +73,6 @@ namespace WebApi.Controllers
     }
 
     // POST: api/SkillSet
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
     public async Task<ActionResult<TblSkillset>> PostTblSkillset(TblSkillset tblSkillset)
     {

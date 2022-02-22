@@ -47,7 +47,6 @@ namespace WebApi.Cotrollers
 
 
     // PUT: api/User/5
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblUser(int id, TblUser tblUser)
     {
@@ -79,17 +78,16 @@ namespace WebApi.Cotrollers
 
 
     // POST: api/User
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
     public async Task<ActionResult<TblUser>> PostTblUser(TblUser tblUser)
     {
       try
       {
-        var usrmail = new MailRequest();
-        usrmail.ToEmail = tblUser.Email;
-        usrmail.Subject = "job access created";
-        usrmail.Body = "some checking message";
-        await _mailService.SendEmailAsync(usrmail);
+        var mail = new MailRequest();
+        mail.ToEmail = tblUser.Email;
+        mail.Subject = "job access created";
+        mail.Body = "some checking message";
+        await _mailService.SendEmailAsync(mail);
         tblUser.Password = BC.HashPassword(tblUser.Password);
         _context.TblUsers.Add(tblUser);
         await _context.SaveChangesAsync();
@@ -106,9 +104,9 @@ namespace WebApi.Cotrollers
 
 
     [HttpPost("authenticate")]
-    public IActionResult Authenticate(Login model)
+    public IActionResult Authenticate(Login userData)
     {
-      var response = _userService.Authenticate(model);
+      var response = _userService.Authenticate(userData);
 
       if (response == null)
         return BadRequest(new { message = "Username or password is incorrect" });

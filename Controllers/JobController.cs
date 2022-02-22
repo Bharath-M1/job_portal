@@ -43,7 +43,6 @@ namespace WebApi.Controllers
     }
 
     // PUT: api/Job/5
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblJob(int id, TblJob tblJob)
     {
@@ -74,7 +73,6 @@ namespace WebApi.Controllers
     }
 
     // POST: api/Job
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
     public async Task<ActionResult<TblJob>> PostTblJob(TblJob tblJob)
     {

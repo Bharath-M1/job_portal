@@ -30,17 +30,14 @@ namespace WebApi.Controllers
     public async Task<ActionResult<TblSeeker>> GetTblSeeker(int id)
     {
       var tblSeeker = await _context.TblSeekers.FindAsync(id);
-
       if (tblSeeker == null)
       {
         return NotFound();
       }
-
       return tblSeeker;
     }
 
     // PUT: api/Seeker/5
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblSeeker(int id, TblSeeker tblSeeker)
     {
@@ -48,9 +45,7 @@ namespace WebApi.Controllers
       {
         return BadRequest();
       }
-
       _context.Entry(tblSeeker).State = EntityState.Modified;
-
       try
       {
         await _context.SaveChangesAsync();
@@ -66,30 +61,22 @@ namespace WebApi.Controllers
           throw;
         }
       }
-
       return NoContent();
     }
 
     // POST: api/Seeker
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-    /// <summary>
-    /// post seeker details
-    /// </summary>
+    /// <summary>post seeker details</summary>
     [HttpPost]
     public async Task<ActionResult<TblSeeker>> PostTblSeeker(TblSeeker tblSeeker)
     {
       TblUser formuser = _context.TblUsers.Single(data => data.Id == tblSeeker.UserId);
-      // Console.WriteLine($"\n\n{formuser.Email}\n\n");
-      // Console.WriteLine($"\n\n{formuser}\n\n");
       if (formuser.Type == "seeker")
       {
         _context.TblSeekers.Add(tblSeeker);
         await _context.SaveChangesAsync();
-        // return StatusCode(StatusCodes.Status201Created);
         return CreatedAtAction("GetTblSeeker", new { id = tblSeeker.Id }, tblSeeker);
       }
-      return StatusCode(StatusCodes.Status422UnprocessableEntity);
-
+      return StatusCode(StatusCodes.Status404NotFound);
     }
 
     // DELETE: api/Seeker/5
@@ -101,10 +88,8 @@ namespace WebApi.Controllers
       {
         return NotFound();
       }
-
       _context.TblSeekers.Remove(tblSeeker);
       await _context.SaveChangesAsync();
-
       return NoContent();
     }
 

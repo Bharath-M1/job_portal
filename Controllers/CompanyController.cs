@@ -43,7 +43,6 @@ namespace WebApi.Controllers
     }
 
     // PUT: api/Company/5
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblCompany(int id, TblCompany tblCompany)
     {
@@ -74,15 +73,19 @@ namespace WebApi.Controllers
     }
 
     // POST: api/Company
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
     public async Task<ActionResult<TblCompany>> PostTblCompany(TblCompany tblCompany)
     {
-      _context.TblCompanies.Add(tblCompany);
-      await _context.SaveChangesAsync();
-
-      return CreatedAtAction("GetTblCompany", new { id = tblCompany.Id }, tblCompany);
+      TblUser CurrentCompany = _context.TblUsers.Single(c => c.Id == tblCompany.UserId);
+      if (CurrentCompany.Type == "company")
+      {
+        _context.TblCompanies.Add(tblCompany);
+        await _context.SaveChangesAsync();
+        return CreatedAtAction("GetTblCompany", new { id = tblCompany.Id }, tblCompany);
+      }
+      return StatusCode(StatusCodes.Status404NotFound);
     }
+
 
     // DELETE: api/Company/5
     [HttpDelete("{id}")]
@@ -93,10 +96,8 @@ namespace WebApi.Controllers
       {
         return NotFound();
       }
-
       _context.TblCompanies.Remove(tblCompany);
       await _context.SaveChangesAsync();
-
       return NoContent();
     }
 

@@ -43,7 +43,6 @@ namespace WebApi.Controllers
     }
 
     // PUT: api/Experience/5
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblExperience(int id, TblExperience tblExperience)
     {
@@ -74,7 +73,6 @@ namespace WebApi.Controllers
     }
 
     // POST: api/Experience
-    // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
     [HttpPost]
     public async Task<ActionResult<TblExperience>> PostTblExperience(TblExperience tblExperience)
     {
