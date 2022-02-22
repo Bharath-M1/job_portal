@@ -33,6 +33,7 @@ var builder = WebApplication.CreateBuilder(args);
         Version = "v1",
         Description = "An API to perform job portal operations"
       });
+      var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
       var securitySchema = new OpenApiSecurityScheme
       {
         Description = "Using the Authorization header with the Bearer scheme.",
@@ -46,17 +47,14 @@ var builder = WebApplication.CreateBuilder(args);
           Id = "Bearer"
         }
       };
+      // c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
       c.AddSecurityDefinition("Bearer", securitySchema);
       c.AddSecurityRequirement(new OpenApiSecurityRequirement
           {
               { securitySchema, new[] { "Bearer" } }
           });
-      var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-      c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
     });
-  // configure strongly typed settings object
   services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
-  // configure DI for application services
   services.AddScoped<IUserService, UserService>();
 
   var app = builder.Build();
@@ -69,11 +67,10 @@ var builder = WebApplication.CreateBuilder(args);
   {
     app.UseDeveloperExceptionPage();
   }
-  app.UseSwagger(options => options.SerializeAsV2 = true);
+  app.UseSwagger();
   app.UseSwaggerUI(c =>
   {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-    c.RoutePrefix = string.Empty;
   }
 );
   app.UseMiddleware<JwtMiddleware>();
