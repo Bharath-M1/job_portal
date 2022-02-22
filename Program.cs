@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Reflection;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using WebApi.Data;
@@ -22,7 +23,7 @@ var builder = WebApplication.CreateBuilder(args);
   services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
   services.AddTransient<IMailService, MailService>();
   services.AddDbContext<jobPortalDbContext>(options =>
-  options.UseSqlServer(builder.Configuration.GetConnectionString("defaultServer")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("defaultServer")));
   services.AddEndpointsApiExplorer();
   services.AddSwaggerGen(c =>
     {
@@ -50,6 +51,8 @@ var builder = WebApplication.CreateBuilder(args);
           {
               { securitySchema, new[] { "Bearer" } }
           });
+      var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+      c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
     });
   // configure strongly typed settings object
   services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
@@ -66,8 +69,13 @@ var builder = WebApplication.CreateBuilder(args);
   {
     app.UseDeveloperExceptionPage();
   }
-  app.UseSwagger();
-  app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1"));
+  app.UseSwagger(options => options.SerializeAsV2 = true);
+  app.UseSwaggerUI(c =>
+  {
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+    c.RoutePrefix = string.Empty;
+  }
+);
   app.UseMiddleware<JwtMiddleware>();
   app.UseHttpsRedirection();
   app.UseDeveloperExceptionPage();

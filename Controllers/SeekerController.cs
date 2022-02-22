@@ -24,6 +24,8 @@ namespace WebApi.Controllers
     }
 
     // GET: api/Seeker/5
+    /// <summary>Get seeker by id</summary>>
+    /// <param name="id">description</param>>
     [HttpGet("{id}")]
     public async Task<ActionResult<TblSeeker>> GetTblSeeker(int id)
     {
@@ -70,6 +72,9 @@ namespace WebApi.Controllers
 
     // POST: api/Seeker
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+    /// <summary>
+    /// post seeker details
+    /// </summary>
     [HttpPost]
     public async Task<ActionResult<TblSeeker>> PostTblSeeker(TblSeeker tblSeeker)
     {
@@ -81,9 +86,9 @@ namespace WebApi.Controllers
         _context.TblSeekers.Add(tblSeeker);
         await _context.SaveChangesAsync();
         // return StatusCode(StatusCodes.Status201Created);
-        return CreatedAtAction("GetTblSeeker",  new { id = tblSeeker.Id }, tblSeeker);
+        return CreatedAtAction("GetTblSeeker", new { id = tblSeeker.Id }, tblSeeker);
       }
-      return StatusCode(StatusCodes.Status403Forbidden);
+      return StatusCode(StatusCodes.Status422UnprocessableEntity);
 
     }
 
