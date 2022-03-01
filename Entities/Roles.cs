@@ -1,9 +1,8 @@
-namespace WebApi.Entities
+
+public enum Role
 {
-  public class Role
-  {
-    public const string Admin = "admin";
-    public const string Seeker = "seeker";
-    public const string Company = "company";
-  }
+  Seeker,
+  Admin,
+  Company,
+  Unknown
 }

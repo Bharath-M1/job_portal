@@ -33,7 +33,6 @@ var builder = WebApplication.CreateBuilder(args);
         Version = "v1",
         Description = "An API to perform job portal operations"
       });
-      var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
       var securitySchema = new OpenApiSecurityScheme
       {
         Description = "Using the Authorization header with the Bearer scheme.",
@@ -47,7 +46,8 @@ var builder = WebApplication.CreateBuilder(args);
           Id = "Bearer"
         }
       };
-      // c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+      var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+      c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
       c.AddSecurityDefinition("Bearer", securitySchema);
       c.AddSecurityRequirement(new OpenApiSecurityRequirement
           {
@@ -58,7 +58,6 @@ var builder = WebApplication.CreateBuilder(args);
   services.AddScoped<IUserService, UserService>();
 
   var app = builder.Build();
-  // global cors policy
   app.UseCors(x => x
       .AllowAnyOrigin()
       .AllowAnyMethod()

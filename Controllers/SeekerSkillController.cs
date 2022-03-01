@@ -1,13 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApi.Data;
-using WebApi.Entities;
-using WebApi.Helpers;
 using WebApi.Models;
 
 namespace WebApi.Controllers
@@ -24,7 +17,6 @@ namespace WebApi.Controllers
     }
 
     // GET: api/SeekerSkill
-    [Authorize]
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TblSeekerSkill>>> GetTblSeekerSkills()
     {

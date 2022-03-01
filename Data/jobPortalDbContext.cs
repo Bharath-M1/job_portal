@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WebApi.Models;
 namespace WebApi.Data;
-#pragma warning disable CS1591
+// #pragma warning disable CS1591
 
 public class jobPortalDbContext : DbContext
 {
@@ -19,4 +19,4 @@ public class jobPortalDbContext : DbContext
   public virtual DbSet<TblUser> TblUsers { get; set; } = null!;
   public DbSet<TblSeekerExperience> TblSeekerExperience { get; set; }
 }
-#pragma warning disable CS1591
+// #pragma warning disable CS1591
