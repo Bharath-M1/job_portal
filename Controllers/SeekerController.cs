@@ -69,6 +69,7 @@ namespace WebApi.Controllers
     [HttpPost]
     public async Task<ActionResult<TblSeeker>> PostTblSeeker(TblSeeker tblSeeker)
     {
+      
       TblUser formuser = _context.TblUsers.Single(data => data.Id == tblSeeker.UserId);
       if (formuser.Type == "seeker")
       {

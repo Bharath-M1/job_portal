@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using System.Text.Json.Serialization;
+using Amazon.S3;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using WebApi.Data;
@@ -21,7 +22,6 @@ var builder = WebApplication.CreateBuilder(args);
   services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
   services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
-  services.AddTransient<IMailService, MailService>();
   services.AddDbContext<jobPortalDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("defaultServer")));
   services.AddEndpointsApiExplorer();
@@ -56,7 +56,10 @@ var builder = WebApplication.CreateBuilder(args);
     });
   services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
   services.AddScoped<IUserService, UserService>();
-
+  services.AddTransient<IMailService, MailService>();
+  services.AddScoped<IAWSS3Service, AWSS3Service>();
+  services.AddAWSService<IAmazonS3>();
+  services.AddScoped<IUploadService, UploadService>();
   var app = builder.Build();
   app.UseCors(x => x
       .AllowAnyOrigin()
