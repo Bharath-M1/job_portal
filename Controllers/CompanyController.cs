@@ -74,7 +74,7 @@ namespace WebApi.Controllers
 
     // POST: api/Company
     [HttpPost]
-    public async Task<ActionResult<TblCompany>> PostTblCompany(TblCompany tblCompany)
+    public async Task<IActionResult> PostTblCompany(TblCompany tblCompany)
     {
       TblUser CurrentCompany = _context.TblUsers.Single(c => c.Id == tblCompany.UserId);
       if (CurrentCompany.Type == "company")
@@ -83,7 +83,7 @@ namespace WebApi.Controllers
         await _context.SaveChangesAsync();
         return CreatedAtAction("GetTblCompany", new { id = tblCompany.Id }, tblCompany);
       }
-      return StatusCode(StatusCodes.Status404NotFound);
+      return BadRequest(new { message = "Selecte user is not a company." });
     }
 
 
