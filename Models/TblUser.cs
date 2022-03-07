@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Models
@@ -34,10 +35,13 @@ namespace WebApi.Models
     [Column("type")]
     [StringLength(25)]
     [Unicode(false)]
+    [RegularExpression(@"company|seeker|admin", ErrorMessage = "Select between options")]
+    [Required]
     public string Type { get; set; } = null!;
-
+    [JsonIgnore]
     [InverseProperty(nameof(TblCompany.User))]
     public virtual ICollection<TblCompany> TblCompanies { get; set; }
+    [JsonIgnore]
     [InverseProperty(nameof(TblSeeker.User))]
     public virtual ICollection<TblSeeker> TblSeekers { get; set; }
   }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Models
 {
-  [Table("tbl_experience")]
+  [Table("tbl_seeker_experience")]
   public partial class TblExperience
   {
     [Key]

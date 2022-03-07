@@ -33,6 +33,7 @@ namespace WebApi.Cotrollers
     [Authorize]
     // GET: api/User/5
     [HttpGet("{id}")]
+    /// <summary>Get all seeker details</summary>
     public async Task<ActionResult<TblUser>> GetTblUser(int id)
     {
       var tblUser = await _context.TblUsers.FindAsync(id);
@@ -80,29 +81,31 @@ namespace WebApi.Cotrollers
     // POST: api/User
     [HttpPost]
     [ValidateModel]
-    public async Task<ActionResult<TblUser>> PostTblUser(TblUser tblUser)
+    public async Task<IActionResult> PostTblUser(TblUser tblUser)
     {
-      // if(tblUser.Email ==)
-      try
+      if (!_context.TblUsers.Any(options => options.Email == tblUser.Email))
       {
-        var mail = new MailRequest();
-        mail.ToEmail = tblUser.Email;
-        mail.Subject = "job access created";
-        mail.Body = "some checking message";
-        await _mailService.SendEmailAsync(mail);
-        tblUser.Password = BC.HashPassword(tblUser.Password);
-        _context.TblUsers.Add(tblUser);
-        await _context.SaveChangesAsync();
-
-        return CreatedAtAction("GetTblUser", new { id = tblUser.Id }, tblUser);
+        try
+        {
+          var mail = new MailRequest();
+          mail.ToEmail = tblUser.Email;
+          mail.Subject = "job access created";
+          mail.Body = "some checking message";
+          await _mailService.SendEmailAsync(mail);
+          tblUser.Password = BC.HashPassword(tblUser.Password);
+          _context.TblUsers.Add(tblUser);
+          await _context.SaveChangesAsync();
+          return CreatedAtAction("GetTblUser", new { id = tblUser.Id }, tblUser);
+        }
+        catch (Exception ex)
+        {
+          throw;
+        }
       }
-      catch (Exception ex)
+      else
       {
-        Console.WriteLine("\n\n{nex}\n\n");
-        throw;
+        return BadRequest(new { Message = "user already exist" });
       }
-
-
     }
 
 

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Data;
 
@@ -11,9 +12,10 @@ using WebApi.Data;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(jobPortalDbContext))]
-    partial class jobPortalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220307070618_cleanedcode")]
+    partial class cleanedcode
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -355,7 +357,6 @@ namespace WebApi.Migrations
                         .HasColumnName("password");
 
                     b.Property<string>("Type")
-                        .IsRequired()
                         .HasMaxLength(25)
                         .IsUnicode(false)
                         .HasColumnType("varchar(25)")

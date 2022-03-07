@@ -9,6 +9,7 @@ namespace WebApi.Models
   [Table("tbl_seeker_qualification")]
   public partial class TblSeekerQualification
   {
+
     [Key]
     public int Id { get; set; }
     [Column("starting_date", TypeName = "date")]
@@ -29,7 +30,6 @@ namespace WebApi.Models
     public int? SeekerId { get; set; }
 
     [ForeignKey(nameof(SeekerId))]
-    [InverseProperty(nameof(TblSeeker.TblSeekerQualifications))]
     public virtual TblSeeker? Seeker { get; set; }
   }
 }

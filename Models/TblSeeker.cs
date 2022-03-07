@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Models
@@ -12,7 +13,6 @@ namespace WebApi.Models
     public TblSeeker()
     {
       TblExperiences = new HashSet<TblExperience>();
-      TblSeekerQualifications = new HashSet<TblSeekerQualification>();
       TblSeekerSkills = new HashSet<TblSeekerSkill>();
     }
 
@@ -30,21 +30,22 @@ namespace WebApi.Models
     public long? ContactNo { get; set; }
     [Column("user_id")]
     public int? UserId { get; set; }
-    [Column("quaification")]
-    [StringLength(255)]
-    [Unicode(false)]
-    public string? Quaification { get; set; }
     [Column("job_applied")]
     public int? JobApplied { get; set; }
+    internal static object TblSeekerQualifications()
+    {
+      throw new NotImplementedException();
+    }
 
     [ForeignKey(nameof(UserId))]
     [InverseProperty(nameof(TblUser.TblSeekers))]
+    [JsonIgnore]
     public virtual TblUser? User { get; set; }
     [InverseProperty(nameof(TblExperience.Seeker))]
+    [JsonIgnore]
     public virtual ICollection<TblExperience> TblExperiences { get; set; }
-    [InverseProperty(nameof(TblSeekerQualification.Seeker))]
-    public virtual ICollection<TblSeekerQualification> TblSeekerQualifications { get; set; }
     [InverseProperty(nameof(TblSeekerSkill.Seeker))]
+    [JsonIgnore]
     public virtual ICollection<TblSeekerSkill> TblSeekerSkills { get; set; }
   }
 }

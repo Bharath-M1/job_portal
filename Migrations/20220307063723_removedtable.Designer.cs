@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApi.Data;
 
@@ -11,9 +12,10 @@ using WebApi.Data;
 namespace WebApi.Migrations
 {
     [DbContext(typeof(jobPortalDbContext))]
-    partial class jobPortalDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220307063723_removedtable")]
+    partial class removedtable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,7 +111,7 @@ namespace WebApi.Migrations
 
                     b.HasIndex("SeekerId");
 
-                    b.ToTable("tbl_seeker_experience");
+                    b.ToTable("tbl_experience");
                 });
 
             modelBuilder.Entity("WebApi.Models.TblJob", b =>
@@ -230,6 +232,12 @@ namespace WebApi.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("last_name");
 
+                    b.Property<string>("Quaification")
+                        .HasMaxLength(255)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("quaification");
+
                     b.Property<int?>("UserId")
                         .HasColumnType("int")
                         .HasColumnName("user_id");
@@ -241,7 +249,7 @@ namespace WebApi.Migrations
                     b.ToTable("tbl_seeker");
                 });
 
-            modelBuilder.Entity("WebApi.Models.TblSeekerQualification", b =>
+            modelBuilder.Entity("WebApi.Models.TblSeekerExperience", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -281,7 +289,7 @@ namespace WebApi.Migrations
 
                     b.HasIndex("SeekerId");
 
-                    b.ToTable("tbl_seeker_qualification");
+                    b.ToTable("TblSeekerExperience");
                 });
 
             modelBuilder.Entity("WebApi.Models.TblSeekerSkill", b =>
@@ -355,7 +363,6 @@ namespace WebApi.Migrations
                         .HasColumnName("password");
 
                     b.Property<string>("Type")
-                        .IsRequired()
                         .HasMaxLength(25)
                         .IsUnicode(false)
                         .HasColumnType("varchar(25)")
@@ -427,7 +434,7 @@ namespace WebApi.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("WebApi.Models.TblSeekerQualification", b =>
+            modelBuilder.Entity("WebApi.Models.TblSeekerExperience", b =>
                 {
                     b.HasOne("WebApi.Models.TblSeeker", "Seeker")
                         .WithMany()
