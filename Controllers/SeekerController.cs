@@ -17,6 +17,7 @@ namespace WebApi.Controllers
     }
 
     // GET: api/Seeker
+    /// <summary>Get all seekers</summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TblSeeker>>> GetTblSeekers()
     {
@@ -24,8 +25,8 @@ namespace WebApi.Controllers
     }
 
     // GET: api/Seeker/5
-    /// <summary>Get seeker by id</summary>>
-    /// <param name="id">description</param>>
+    /// <summary>Get seeker by id</summary>
+    /// <param name="id">description</param>
     [HttpGet("{id}")]
     public async Task<ActionResult<TblSeeker>> GetTblSeeker(int id)
     {
