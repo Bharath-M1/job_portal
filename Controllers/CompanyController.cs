@@ -28,7 +28,7 @@ namespace WebApi.Controllers
       return await _context.TblCompanies.ToListAsync();
     }
 
-    // GET: api/Company/5
+
     [HttpGet("{id}")]
     public async Task<ActionResult<TblCompany>> GetTblCompany(int id)
     {

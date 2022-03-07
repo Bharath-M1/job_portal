@@ -67,9 +67,9 @@ namespace WebApi.Controllers
     // POST: api/Seeker
     /// <summary>post seeker details</summary>
     [HttpPost]
-    public async Task<ActionResult<TblSeeker>> PostTblSeeker(TblSeeker tblSeeker)
+    public async Task<IActionResult> PostTblSeeker(TblSeeker tblSeeker)
     {
-      
+
       TblUser formuser = _context.TblUsers.Single(data => data.Id == tblSeeker.UserId);
       if (formuser.Type == "seeker")
       {
@@ -77,7 +77,7 @@ namespace WebApi.Controllers
         await _context.SaveChangesAsync();
         return CreatedAtAction("GetTblSeeker", new { id = tblSeeker.Id }, tblSeeker);
       }
-      return StatusCode(StatusCodes.Status404NotFound);
+      return BadRequest(new { message = "Selecte user is not a seeker." });
     }
 
     // DELETE: api/Seeker/5

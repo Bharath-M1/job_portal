@@ -79,8 +79,10 @@ namespace WebApi.Cotrollers
 
     // POST: api/User
     [HttpPost]
+    [ValidateModel]
     public async Task<ActionResult<TblUser>> PostTblUser(TblUser tblUser)
     {
+      // if(tblUser.Email ==)
       try
       {
         var mail = new MailRequest();
@@ -96,6 +98,7 @@ namespace WebApi.Cotrollers
       }
       catch (Exception ex)
       {
+        Console.WriteLine("\n\n{nex}\n\n");
         throw;
       }
 

@@ -25,6 +25,7 @@ namespace WebApi.Models
     [Column("email")]
     [StringLength(255)]
     [Unicode(false)]
+    [EmailAddress(ErrorMessage = "Not a valid email")]
     public string Email { get; set; } = null!;
     [Column("password")]
     [StringLength(255)]

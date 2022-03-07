@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Net.Mime;
+using System.Reflection;
 using System.Text.Json.Serialization;
 using Amazon.S3;
 using Microsoft.EntityFrameworkCore;
@@ -19,8 +20,18 @@ var builder = WebApplication.CreateBuilder(args);
           builder.WithOrigins("http://localhost:5000/", "https://localhost:5001/");
         });
     });
-  services.AddControllers().AddJsonOptions(x =>
-                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+  services.AddControllers()
+  .ConfigureApiBehaviorOptions(options =>
+    {
+      options.InvalidModelStateResponseFactory = context =>
+      {
+        var result = new ValidationFailedResult(context.ModelState);
+        result.ContentTypes.Add(MediaTypeNames.Application.Json);
+        return result;
+      };
+    })
+  .AddJsonOptions(x =>
+    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
   services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
   services.AddDbContext<jobPortalDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("defaultServer")));
