@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:WebApi.Controllers.SeekerController.GetTblSeekers">
+            <summary>Get all seekers</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerController.GetTblSeeker(System.Int32)">
+            <summary>Get seeker by id</summary>
+            <param name="id">description</param>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerController.PostTblSeeker(WebApi.Models.TblSeeker)">
+            <summary>post seeker details</summary>
+        </member>
+    </members>
+</doc>

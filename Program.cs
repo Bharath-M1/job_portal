@@ -34,7 +34,7 @@ var builder = WebApplication.CreateBuilder(args);
     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
   services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
   services.AddDbContext<jobPortalDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("defaultServer")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("defaultServer"), options => options.EnableRetryOnFailure()));
   services.AddEndpointsApiExplorer();
   services.AddSwaggerGen(c =>
     {
