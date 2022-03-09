@@ -6,7 +6,7 @@ using BC = BCrypt.Net.BCrypt;
 using WebApi.Services;
 using WebApi.Helpers;
 
-namespace WebApi.Cotrollers
+namespace WebApi.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
