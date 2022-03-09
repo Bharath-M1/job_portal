@@ -92,5 +92,6 @@ var builder = WebApplication.CreateBuilder(args);
   app.UseAuthentication();
   app.UseAuthorization();
   app.MapControllers();
-  app.Run("http://localhost:5000");
+  app.MapGet("/", () => "Hello World!");
+  app.Run();
 }

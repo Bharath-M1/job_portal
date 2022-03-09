@@ -76,10 +76,13 @@ namespace WebApi.Controllers
     [HttpPost]
     public async Task<ActionResult<TblExperience>> PostTblExperience(TblExperience tblExperience)
     {
+      // if (!_context.TblUsers.Any(options => options.Email == tblExperience.))
+      // {}
       _context.TblExperiences.Add(tblExperience);
       await _context.SaveChangesAsync();
 
       return CreatedAtAction("GetTblExperience", new { id = tblExperience.Id }, tblExperience);
+
     }
 
     // DELETE: api/Experience/5
