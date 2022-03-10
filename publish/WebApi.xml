@@ -11,6 +11,10 @@
             <summary>Get seeker by id</summary>
             <param name="id">description</param>
         </member>
+        <member name="M:WebApi.Controllers.SeekerController.GetSeekerData(System.Int32)">
+            <summary>Get seeker data using userid</summary>
+            <param name="id">userid</param>
+        </member>
         <member name="M:WebApi.Controllers.SeekerController.PostTblSeeker(WebApi.Models.TblSeeker)">
             <summary>post seeker details</summary>
         </member>
