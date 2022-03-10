@@ -33,7 +33,7 @@ var builder = WebApplication.CreateBuilder(args);
     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
   services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
   services.AddDbContext<jobPortalDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("onlineAddress"), options => options.EnableRetryOnFailure()));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("AzureStorage"), options => options.EnableRetryOnFailure()));
   services.AddEndpointsApiExplorer();
   services.AddSwaggerGen(c =>
     {
