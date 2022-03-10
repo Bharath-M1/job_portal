@@ -41,6 +41,23 @@ namespace WebApi.Controllers
       return tblSeeker;
     }
 
+
+
+    // GET: api/Seeker/retrieveseekerdata/id
+    /// <summary>Get seeker data using userid</summary>
+    /// <param name="id">userid</param>
+    [HttpGet("retrieveseekerdata/{id}")]
+    public async Task<ActionResult<TblSeeker>> GetSeekerData(int id)
+    {
+      var tblSeeker = _context.TblSeekers.Single(data => data.UserId == id);
+      if (tblSeeker == null)
+      {
+        return NotFound();
+      }
+      return tblSeeker;
+    }
+
+
     // PUT: api/Seeker/5
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblSeeker(int id, TblSeeker tblSeeker)
