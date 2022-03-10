@@ -70,7 +70,7 @@ var builder = WebApplication.CreateBuilder(args);
   services.AddTransient<IMailService, MailService>();
   services.AddScoped<IAWSS3Service, AWSS3Service>();
   services.AddAWSService<IAmazonS3>();
-  services.AddScoped<IUploadService, UploadService>();
+  services.AddScoped<IAzureStorage, AzureStorage>();
   var app = builder.Build();
   app.UseCors(x => x
       .AllowAnyOrigin()
