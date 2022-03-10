@@ -1,7 +1,6 @@
 ﻿using System.Net.Mime;
 using System.Reflection;
 using System.Text.Json.Serialization;
-using Amazon.S3;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using WebApi.Data;
@@ -34,7 +33,7 @@ var builder = WebApplication.CreateBuilder(args);
     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
   services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
   services.AddDbContext<jobPortalDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("defaultServer"), options => options.EnableRetryOnFailure()));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("onlineAddress"), options => options.EnableRetryOnFailure()));
   services.AddEndpointsApiExplorer();
   services.AddSwaggerGen(c =>
     {
