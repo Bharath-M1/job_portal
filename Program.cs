@@ -68,8 +68,6 @@ var builder = WebApplication.CreateBuilder(args);
   services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
   services.AddScoped<IUserService, UserService>();
   services.AddTransient<IMailService, MailService>();
-  services.AddScoped<IAWSS3Service, AWSS3Service>();
-  services.AddAWSService<IAmazonS3>();
   services.AddScoped<IAzureStorage, AzureStorage>();
   var app = builder.Build();
   app.UseCors(x => x
