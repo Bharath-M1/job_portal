@@ -14,5 +14,8 @@
         <member name="M:WebApi.Controllers.SeekerController.PostTblSeeker(WebApi.Models.TblSeeker)">
             <summary>post seeker details</summary>
         </member>
+        <member name="M:WebApi.Controllers.SeekerController.Postfiles">
+            <summary>service to post data on azure storage</summary>
+        </member>
     </members>
 </doc>
