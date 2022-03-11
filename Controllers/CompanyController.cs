@@ -42,6 +42,20 @@ namespace WebApi.Controllers
       return tblCompany;
     }
 
+    // getting company data using user id
+    [HttpGet("retrievecompanydata/{id}")]
+    public async Task<ActionResult<TblCompany>> GetCompnayData(int id)
+    {
+      var tblCompany = _context.TblCompanies.Single(data => data.UserId == id);
+
+      if (tblCompany == null)
+      {
+        return NotFound();
+      }
+
+      return tblCompany;
+    }
+
     // PUT: api/Company/5
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblCompany(int id, TblCompany tblCompany)

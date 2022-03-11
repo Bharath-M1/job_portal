@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net.Http.Headers;
 using WebApi.Data;
 using WebApi.Models;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
@@ -10,9 +12,10 @@ namespace WebApi.Controllers
   public class SeekerController : ControllerBase
   {
     private readonly jobPortalDbContext _context;
-
-    public SeekerController(jobPortalDbContext context)
+    private readonly IAzureStorage _azurestorage;
+    public SeekerController(jobPortalDbContext context, IAzureStorage azureStorage)
     {
+      _azurestorage = azureStorage;
       _context = context;
     }
 
@@ -37,6 +40,23 @@ namespace WebApi.Controllers
       }
       return tblSeeker;
     }
+
+
+
+    // GET: api/Seeker/retrieveseekerdata/id
+    /// <summary>Get seeker data using userid</summary>
+    /// <param name="id">userid</param>
+    [HttpGet("retrieveseekerdata/{id}")]
+    public async Task<ActionResult<TblSeeker>> GetSeekerData(int id)
+    {
+      var tblSeeker = _context.TblSeekers.Single(data => data.UserId == id);
+      if (tblSeeker == null)
+      {
+        return NotFound();
+      }
+      return tblSeeker;
+    }
+
 
     // PUT: api/Seeker/5
     [HttpPut("{id}")]
@@ -80,6 +100,35 @@ namespace WebApi.Controllers
       }
       return BadRequest(new { message = "Selecte user is not a seeker." });
     }
+
+
+    // POST: api/Seeker
+    /// <summary>service to post data on azure storage</summary>
+    [HttpPost("postfiles"), DisableRequestSizeLimit]
+    public async Task<IActionResult> Postfiles()
+    {
+      try
+      {
+        var formCollection = await Request.ReadFormAsync();
+        var file = formCollection.Files.First();
+        if (file.Length > 0)
+        {
+          var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');
+          string fileURL = await _azurestorage.UploadAsync(file.OpenReadStream(), fileName, file.ContentType);
+          return Ok(new { fileURL });
+        }
+        else
+        {
+          return BadRequest();
+        }
+      }
+      catch (Exception ex)
+      {
+        return StatusCode(500, $"Internal server error: {ex}");
+      }
+    }
+
+
 
     // DELETE: api/Seeker/5
     [HttpDelete("{id}")]

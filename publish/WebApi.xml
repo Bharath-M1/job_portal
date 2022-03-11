@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:WebApi.Controllers.SeekerController.GetTblSeekers">
+            <summary>Get all seekers</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerController.GetTblSeeker(System.Int32)">
+            <summary>Get seeker by id</summary>
+            <param name="id">description</param>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerController.GetSeekerData(System.Int32)">
+            <summary>Get seeker data using userid</summary>
+            <param name="id">userid</param>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerController.PostTblSeeker(WebApi.Models.TblSeeker)">
+            <summary>post seeker details</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerController.Postfiles">
+            <summary>service to post data on azure storage</summary>
+        </member>
+    </members>
+</doc>

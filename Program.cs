@@ -1,7 +1,6 @@
 ﻿using System.Net.Mime;
 using System.Reflection;
 using System.Text.Json.Serialization;
-using Amazon.S3;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using WebApi.Data;
@@ -34,7 +33,7 @@ var builder = WebApplication.CreateBuilder(args);
     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
   services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
   services.AddDbContext<jobPortalDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("defaultServer")));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("AzureStorage"), options => options.EnableRetryOnFailure()));
   services.AddEndpointsApiExplorer();
   services.AddSwaggerGen(c =>
     {
@@ -68,9 +67,7 @@ var builder = WebApplication.CreateBuilder(args);
   services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
   services.AddScoped<IUserService, UserService>();
   services.AddTransient<IMailService, MailService>();
-  services.AddScoped<IAWSS3Service, AWSS3Service>();
-  services.AddAWSService<IAmazonS3>();
-  services.AddScoped<IUploadService, UploadService>();
+  services.AddScoped<IAzureStorage, AzureStorage>();
   var app = builder.Build();
   app.UseCors(x => x
       .AllowAnyOrigin()

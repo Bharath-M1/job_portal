@@ -16,6 +16,7 @@ public class jobPortalDbContext : DbContext
   public virtual DbSet<TblSeekerSkill> TblSeekerSkills { get; set; } = null!;
   public virtual DbSet<TblSkillset> TblSkillsets { get; set; } = null!;
   public virtual DbSet<TblUser> TblUsers { get; set; } = null!;
+  public virtual DbSet<TblSubscripition> TblSubscripitions { get; set; } = null!;
   public DbSet<TblSeekerQualification> TblSeekerQualifications { get; set; }
 }
 // #pragma warning disable CS1591

@@ -5,11 +5,11 @@ using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 namespace WebApi.Services
 {
-  public class UploadService : IUploadService
+  public class AzureStorage : IAzureStorage
   {
     private readonly string _storageConnectionString;
 
-    public UploadService(IConfiguration configuration)
+    public AzureStorage(IConfiguration configuration)
     {
       _storageConnectionString = configuration.GetConnectionString("AzureStorage");
     }
