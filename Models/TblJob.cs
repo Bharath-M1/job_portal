@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Models
@@ -40,6 +41,7 @@ namespace WebApi.Models
     [Unicode(false)]
     public string? IsActive { get; set; }
 
+    [JsonIgnore]
     [ForeignKey(nameof(CompanyId))]
     [InverseProperty(nameof(TblCompany.TblJobs))]
     public virtual TblCompany? Company { get; set; }
