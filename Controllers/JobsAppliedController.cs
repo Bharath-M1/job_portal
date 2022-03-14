@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 using WebApi.Data;
 using WebApi.Models;
 
@@ -22,6 +23,8 @@ namespace WebApi.Controllers
     }
 
     // GET: api/JobsApplied
+    /// <summary>Lisitng all jobs applications</summary>
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TblJobsApplied>>> GetTblJobsApplieds()
     {
@@ -29,6 +32,8 @@ namespace WebApi.Controllers
     }
 
     // GET: api/JobsApplied/5
+    /// <summary>Fetching particular job applicants</summary>
+
     [HttpGet("{id}")]
     public async Task<ActionResult<TblJobsApplied>> GetTblJobsApplied(int id)
     {
@@ -42,7 +47,27 @@ namespace WebApi.Controllers
       return tblJobsApplied;
     }
 
+
+
+    // GET: api/JobsApplied/5
+    /// <summary>Fetching particular job applicants</summary>
+
+    [HttpGet("jobpostapplicant/{id}")]
+    public async Task<ActionResult<IEnumerable<TblJobsApplied>>> GetJobApplied(int id)
+    {
+      var tblJobsApplied = await _context.TblJobsApplieds.Where(data => data.JobId == id).Include(d => d.Seeker).ToListAsync();
+
+      if (tblJobsApplied == null)
+      {
+        return NotFound();
+      }
+
+      return tblJobsApplied;
+    }
+
     // PUT: api/JobsApplied/5
+    /// <summary>updating particular job application</summary>
+
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblJobsApplied(int id, TblJobsApplied tblJobsApplied)
     {
@@ -73,9 +98,13 @@ namespace WebApi.Controllers
     }
 
     // POST: api/JobsApplied
+    /// <summary>Applying for new job using seeker id</summary>
+
     [HttpPost]
     public async Task<ActionResult<TblJobsApplied>> PostTblJobsApplied(TblJobsApplied tblJobsApplied)
     {
+      DateTime now = DateTime.Now;
+      tblJobsApplied.AppliedOn = now;
       _context.TblJobsApplieds.Add(tblJobsApplied);
       await _context.SaveChangesAsync();
 
@@ -83,6 +112,8 @@ namespace WebApi.Controllers
     }
 
     // DELETE: api/JobsApplied/5
+    /// <summary>Deleting a particular job application</summary>
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteTblJobsApplied(int id)
     {

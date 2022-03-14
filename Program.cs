@@ -10,8 +10,8 @@ using WebApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 {
-  var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
   var services = builder.Services;
+  var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
   services.AddCors(options =>
     {
       options.AddPolicy(name: MyAllowSpecificOrigins, builder =>
@@ -31,7 +31,6 @@ var builder = WebApplication.CreateBuilder(args);
     })
   .AddJsonOptions(x =>
     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
-  services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
   services.AddDbContext<jobPortalDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("AzureStorage"), options => options.EnableRetryOnFailure()));
   services.AddEndpointsApiExplorer();
@@ -65,6 +64,7 @@ var builder = WebApplication.CreateBuilder(args);
           });
     });
   services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+  services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
   services.AddScoped<IUserService, UserService>();
   services.AddTransient<IMailService, MailService>();
   services.AddScoped<IAzureStorage, AzureStorage>();
@@ -89,6 +89,6 @@ var builder = WebApplication.CreateBuilder(args);
   app.UseAuthentication();
   app.UseAuthorization();
   app.MapControllers();
-  app.MapGet("/", () => "Hello World!");
+  app.MapGet("/", () => "Job portal Homepage!");
   app.Run();
 }

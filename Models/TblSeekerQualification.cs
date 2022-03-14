@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Models
@@ -28,7 +29,7 @@ namespace WebApi.Models
     public string DegereName { get; set; } = null!;
     [Column("seeker_id")]
     public int? SeekerId { get; set; }
-
+    [JsonIgnore]
     [ForeignKey(nameof(SeekerId))]
     public virtual TblSeeker? Seeker { get; set; }
   }

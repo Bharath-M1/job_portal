@@ -17,6 +17,8 @@ namespace WebApi.Controllers
     }
 
     // GET: api/SkillSet
+    /// <summary>Fetching all  skillset</summary>
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TblSkillset>>> GetTblSkillsets()
     {
@@ -24,6 +26,8 @@ namespace WebApi.Controllers
     }
 
     // GET: api/SkillSet/5
+    /// <summary>Fetching particular  skillset</summary>
+
     [HttpGet("{id}")]
     public async Task<ActionResult<TblSkillset>> GetTblSkillset(int id)
     {
@@ -38,6 +42,8 @@ namespace WebApi.Controllers
     }
 
     // PUT: api/SkillSet/5
+    /// <summary>Updating particular  skillset</summary>
+
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblSkillset(int id, TblSkillset tblSkillset)
     {
@@ -68,6 +74,8 @@ namespace WebApi.Controllers
     }
 
     // POST: api/SkillSet
+    /// <summary>Adding new skillset</summary>
+
     [HttpPost]
     public async Task<ActionResult<TblSkillset>> PostTblSkillset(TblSkillset tblSkillset)
     {
@@ -78,6 +86,8 @@ namespace WebApi.Controllers
     }
 
     // DELETE: api/SkillSet/5
+    /// <summary>Removing particular skillset</summary>
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteTblSkillset(int id)
     {

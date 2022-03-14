@@ -4,6 +4,75 @@
         <name>WebApi</name>
     </assembly>
     <members>
+        <member name="M:WebApi.Controllers.CompanyController.GetTblCompanies">
+            <summary>Get all company details used in admin</summary>
+        </member>
+        <member name="M:WebApi.Controllers.CompanyController.GetTblCompany(System.Int32)">
+            <summary>Get particular company detail</summary>
+        </member>
+        <member name="M:WebApi.Controllers.CompanyController.GetCompnayData(System.Int32)">
+            <summary>retieveing company data using userid</summary>
+        </member>
+        <member name="M:WebApi.Controllers.CompanyController.PutTblCompany(System.Int32,WebApi.Models.TblCompany)">
+            <summary>Editing the particular company data</summary>
+        </member>
+        <member name="M:WebApi.Controllers.CompanyController.PostTblCompany(WebApi.Models.TblCompany)">
+            <summary>Adding new company to jobs 360</summary>
+        </member>
+        <member name="M:WebApi.Controllers.CompanyController.DeleteTblCompany(System.Int32)">
+            <summary>Deleting a particular company using company id</summary>
+        </member>
+        <member name="M:WebApi.Controllers.ExperienceController.GetTblExperiences">
+            <summary>Getting all users expriences</summary>
+        </member>
+        <member name="M:WebApi.Controllers.ExperienceController.GetTblExperience(System.Int32)">
+            <summary>fetching single user experience using their user id</summary>
+        </member>
+        <member name="M:WebApi.Controllers.ExperienceController.PutTblExperience(System.Int32,WebApi.Models.TblExperience)">
+            <summary>Updating paricular users expreicence</summary>
+        </member>
+        <member name="M:WebApi.Controllers.ExperienceController.PostTblExperience(WebApi.Models.TblExperience)">
+            <summary>Adding new experience</summary>
+        </member>
+        <member name="M:WebApi.Controllers.ExperienceController.DeleteTblExperience(System.Int32)">
+            <summary>Removing a user experience using userid</summary>
+        </member>
+        <member name="M:WebApi.Controllers.JobController.GetTblJobs">
+            <summary>Get all jobs detail for job listing page it also have search filters</summary>
+        </member>
+        <member name="M:WebApi.Controllers.JobController.GetTblJob(System.Int32)">
+            <summary>Get particular job detail for job detail page</summary>
+        </member>
+        <member name="M:WebApi.Controllers.JobController.GetTotalJobsPosted(System.Int32)">
+            <summary>Get Total jobs posted by single company using company id</summary>
+        </member>
+        <member name="M:WebApi.Controllers.JobController.PutTblJob(System.Int32,WebApi.Models.TblJob)">
+            <summary>Edit particular job using the id</summary>
+        </member>
+        <member name="M:WebApi.Controllers.JobController.PostTblJob(WebApi.Models.TblJob)">
+            <summary>posting a new job by company</summary>
+        </member>
+        <member name="M:WebApi.Controllers.JobController.DeleteTblJob(System.Int32)">
+            <summary>Delete a particular job</summary>
+        </member>
+        <member name="M:WebApi.Controllers.JobsAppliedController.GetTblJobsApplieds">
+            <summary>Lisitng all jobs applications</summary>
+        </member>
+        <member name="M:WebApi.Controllers.JobsAppliedController.GetTblJobsApplied(System.Int32)">
+            <summary>Fetching particular job applicants</summary>
+        </member>
+        <member name="M:WebApi.Controllers.JobsAppliedController.GetJobApplied(System.Int32)">
+            <summary>Fetching particular job applicants</summary>
+        </member>
+        <member name="M:WebApi.Controllers.JobsAppliedController.PutTblJobsApplied(System.Int32,WebApi.Models.TblJobsApplied)">
+            <summary>updating particular job application</summary>
+        </member>
+        <member name="M:WebApi.Controllers.JobsAppliedController.PostTblJobsApplied(WebApi.Models.TblJobsApplied)">
+            <summary>Applying for new job using seeker id</summary>
+        </member>
+        <member name="M:WebApi.Controllers.JobsAppliedController.DeleteTblJobsApplied(System.Int32)">
+            <summary>Deleting a particular job application</summary>
+        </member>
         <member name="M:WebApi.Controllers.SeekerController.GetTblSeekers">
             <summary>Get all seekers</summary>
         </member>
@@ -15,11 +84,95 @@
             <summary>Get seeker data using userid</summary>
             <param name="id">userid</param>
         </member>
+        <member name="M:WebApi.Controllers.SeekerController.PutTblSeeker(System.Int32,WebApi.Models.TblSeeker)">
+            <summary>Edit particular seeker</summary>
+        </member>
         <member name="M:WebApi.Controllers.SeekerController.PostTblSeeker(WebApi.Models.TblSeeker)">
             <summary>post seeker details</summary>
         </member>
         <member name="M:WebApi.Controllers.SeekerController.Postfiles">
             <summary>service to post data on azure storage</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerController.DeleteTblSeeker(System.Int32)">
+            <summary>Delete particular seeker</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerQualificationController.GetTblSeekerQualification">
+            <summary>listing all seekers qualifications</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerQualificationController.GetTblSeekerQualification(System.Int32)">
+            <summary>Getting single users qualification</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerQualificationController.PutTblSeekerQualification(System.Int32,WebApi.Models.TblSeekerQualification)">
+            <summary>Editing users qualification</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerQualificationController.PostTblSeekerQualification(WebApi.Models.TblSeekerQualification)">
+            <summary>Inserting new qualification to user</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerQualificationController.DeleteTblSeekerQualification(System.Int32)">
+            <summary>Removing users qualification</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerSkillController.GetTblSeekerSkills">
+            <summary>listing all seekers skills</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerSkillController.GetTblSeekerSkill(System.Int32)">
+            <summary>listing particular seekers skills using seekerid</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerSkillController.PutTblSeekerSkill(System.Int32,WebApi.Models.TblSeekerSkill)">
+            <summary>Updating seekers skill</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerSkillController.PostTblSeekerSkill(WebApi.Models.TblSeekerSkill)">
+            <summary>Adding new seekers skills</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SeekerSkillController.DeleteTblSeekerSkill(System.Int32)">
+            <summary>Removing new skills</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SkillSetController.GetTblSkillsets">
+            <summary>Fetching all  skillset</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SkillSetController.GetTblSkillset(System.Int32)">
+            <summary>Fetching particular  skillset</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SkillSetController.PutTblSkillset(System.Int32,WebApi.Models.TblSkillset)">
+            <summary>Updating particular  skillset</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SkillSetController.PostTblSkillset(WebApi.Models.TblSkillset)">
+            <summary>Adding new skillset</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SkillSetController.DeleteTblSkillset(System.Int32)">
+            <summary>Removing particular skillset</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SubscripitionController.GetTblSubscripitions">
+            <summary>Getting all email classified users</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SubscripitionController.GetTblSubscripition(System.Int32)">
+            <summary>Fetching particular email notification user</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SubscripitionController.PutTblSubscripition(System.Int32,WebApi.Models.TblSubscripition)">
+            <summary>updating particular email notification user</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SubscripitionController.PostTblSubscripition(WebApi.Models.TblSubscripition)">
+            <summary>Adding new email notification user</summary>
+        </member>
+        <member name="M:WebApi.Controllers.SubscripitionController.DeleteTblSubscripition(System.Int32)">
+            <summary>Removing particular email notification user</summary>
+        </member>
+        <member name="M:WebApi.Controllers.UserController.GetTblUsers">
+            <summary>Get all registered users</summary>
+        </member>
+        <member name="M:WebApi.Controllers.UserController.GetTblUser(System.Int32)">
+            <summary>Get particular registered user using user id</summary>
+        </member>
+        <member name="M:WebApi.Controllers.UserController.PutTblUser(System.Int32,WebApi.Models.TblUser)">
+            <summary>Updating particular user data in user table</summary>
+        </member>
+        <member name="M:WebApi.Controllers.UserController.PostTblUser(WebApi.Models.TblUser)">
+            <summary>Adding new user to jobs360</summary>\
+        </member>
+        <member name="M:WebApi.Controllers.UserController.Authenticate(WebApi.Models.Login)">
+            <summary>Login method it generates jwt token</summary>
+        </member>
+        <member name="M:WebApi.Controllers.UserController.DeleteTblUser(System.Int32)">
+            <summary>Delete particular user from jobs360</summary>
         </member>
     </members>
 </doc>

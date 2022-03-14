@@ -23,6 +23,7 @@ namespace WebApi.Controllers
     }
 
     // GET: api/User
+    /// <summary>Get all registered users</summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TblUser>>> GetTblUsers()
     {
@@ -30,10 +31,10 @@ namespace WebApi.Controllers
     }
 
 
-    [Authorize]
     // GET: api/User/5
+    /// <summary>Get particular registered user using user id</summary>
+    [Authorize]
     [HttpGet("{id}")]
-    /// <summary>Get all seeker details</summary>
     public async Task<ActionResult<TblUser>> GetTblUser(int id)
     {
       var tblUser = await _context.TblUsers.FindAsync(id);
@@ -48,6 +49,7 @@ namespace WebApi.Controllers
 
 
     // PUT: api/User/5
+    /// <summary>Updating particular user data in user table</summary>
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblUser(int id, TblUser tblUser)
     {
@@ -79,6 +81,7 @@ namespace WebApi.Controllers
 
 
     // POST: api/User
+    /// <summary>Adding new user to jobs360</summary>\
     [HttpPost]
     [ValidateModel]
     public async Task<IActionResult> PostTblUser(TblUser tblUser)
@@ -109,6 +112,8 @@ namespace WebApi.Controllers
     }
 
 
+    //login controller method
+    /// <summary>Login method it generates jwt token</summary>
     [HttpPost("authenticate")]
     public IActionResult Authenticate(Login userData)
     {
@@ -122,6 +127,7 @@ namespace WebApi.Controllers
 
 
     // DELETE: api/User/5
+    /// <summary>Delete particular user from jobs360</summary>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteTblUser(int id)
     {

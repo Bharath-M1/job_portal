@@ -17,6 +17,8 @@ namespace WebApi.Controllers
     }
 
     // GET: api/SeekerSkill
+    /// <summary>listing all seekers skills</summary>
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TblSeekerSkill>>> GetTblSeekerSkills()
     {
@@ -24,6 +26,8 @@ namespace WebApi.Controllers
     }
 
     // GET: api/SeekerSkill/5
+    /// <summary>listing particular seekers skills using seekerid</summary>
+
     [HttpGet("{id}")]
     public async Task<ActionResult<TblSeekerSkill>> GetTblSeekerSkill(int id)
     {
@@ -38,6 +42,8 @@ namespace WebApi.Controllers
     }
 
     // PUT: api/SeekerSkill/5
+    /// <summary>Updating seekers skill</summary>
+
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblSeekerSkill(int id, TblSeekerSkill tblSeekerSkill)
     {
@@ -68,6 +74,8 @@ namespace WebApi.Controllers
     }
 
     // POST: api/SeekerSkill
+    /// <summary>Adding new seekers skills</summary>
+
     [HttpPost]
     public async Task<ActionResult<TblSeekerSkill>> PostTblSeekerSkill(TblSeekerSkill tblSeekerSkill)
     {
@@ -78,6 +86,8 @@ namespace WebApi.Controllers
     }
 
     // DELETE: api/SeekerSkill/5
+    /// <summary>Removing new skills</summary>
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteTblSeekerSkill(int id)
     {

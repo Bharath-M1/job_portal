@@ -45,7 +45,6 @@ namespace WebApi.Models
     [JsonIgnore]
     public virtual ICollection<TblExperience> TblExperiences { get; set; }
     [InverseProperty(nameof(TblSeekerSkill.Seeker))]
-    [JsonIgnore]
     public virtual ICollection<TblSeekerSkill> TblSeekerSkills { get; set; }
   }
 }

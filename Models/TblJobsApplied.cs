@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Models
@@ -17,10 +18,10 @@ namespace WebApi.Models
     public int? SeekerId { get; set; }
     [Column("applied_on", TypeName = "datetime")]
     public DateTime? AppliedOn { get; set; }
-
     [ForeignKey(nameof(JobId))]
     public virtual TblJob? Job { get; set; }
     [ForeignKey(nameof(SeekerId))]
+    // [InverseProperty(nameof(TblSeeker.Id))]
     public virtual TblSeeker? Seeker { get; set; }
   }
 }
