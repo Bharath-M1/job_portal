@@ -22,6 +22,7 @@ namespace WebApi.Controllers
     }
 
     // GET: api/Company
+    /// <summary>Get all company details used in admin</summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TblCompany>>> GetTblCompanies()
     {
@@ -29,6 +30,7 @@ namespace WebApi.Controllers
     }
 
 
+    /// <summary>Get particular company detail</summary>
     [HttpGet("{id}")]
     public async Task<ActionResult<TblCompany>> GetTblCompany(int id)
     {
@@ -43,6 +45,7 @@ namespace WebApi.Controllers
     }
 
     // getting company data using user id
+    /// <summary>retieveing company data using userid</summary>
     [HttpGet("retrievecompanydata/{id}")]
     public async Task<ActionResult<TblCompany>> GetCompnayData(int id)
     {
@@ -57,6 +60,7 @@ namespace WebApi.Controllers
     }
 
     // PUT: api/Company/5
+    /// <summary>Editing the particular company data</summary>
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblCompany(int id, TblCompany tblCompany)
     {
@@ -87,6 +91,7 @@ namespace WebApi.Controllers
     }
 
     // POST: api/Company
+    /// <summary>Adding new company to jobs 360</summary>
     [HttpPost]
     public async Task<IActionResult> PostTblCompany(TblCompany tblCompany)
     {
@@ -102,6 +107,7 @@ namespace WebApi.Controllers
 
 
     // DELETE: api/Company/5
+    /// <summary>Deleting a particular company using company id</summary>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteTblCompany(int id)
     {

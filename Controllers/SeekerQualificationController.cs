@@ -22,6 +22,7 @@ namespace WebApi.Controllers
     }
 
     // GET: api/SeekerQualification
+    /// <summary>listing all seekers qualifications</summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TblSeekerQualification>>> GetTblSeekerQualification()
     {
@@ -29,6 +30,8 @@ namespace WebApi.Controllers
     }
 
     // GET: api/SeekerQualification/5
+    /// <summary>Getting single users qualification</summary>
+
     [HttpGet("{id}")]
     public async Task<ActionResult<TblSeekerQualification>> GetTblSeekerQualification(int id)
     {
@@ -44,6 +47,7 @@ namespace WebApi.Controllers
 
     // PUT: api/SeekerQualification/5
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+    /// <summary>Editing users qualification</summary>
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblSeekerQualification(int id, TblSeekerQualification tblSeekerQualification)
     {
@@ -75,6 +79,8 @@ namespace WebApi.Controllers
 
     // POST: api/SeekerQualification
     // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+    /// <summary>Inserting new qualification to user</summary>
+
     [HttpPost]
     public async Task<ActionResult<TblSeekerQualification>> PostTblSeekerQualification(TblSeekerQualification tblSeekerQualification)
     {
@@ -85,6 +91,7 @@ namespace WebApi.Controllers
     }
 
     // DELETE: api/SeekerQualification/5
+    /// <summary>Removing users qualification</summary>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteTblSeekerQualification(int id)
     {

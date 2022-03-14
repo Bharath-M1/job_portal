@@ -22,25 +22,23 @@ namespace WebApi.Controllers
     }
 
     // GET: api/Job
+    /// <summary>Get all jobs detail for job listing page it also have search filters</summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TblJob>>> GetTblJobs()
     {
       // string skills = HttpContext.Request.Query["skills"].ToString();
       // string[] skillsArray = skills.Split(',');
+      // Console.WriteLine($"\n\n{skills.Length},{skillsArray.Length <= 1},{skillsArray[0]},{skillsArray.Length}\n\n");&& skills.Length < 1
       string type = HttpContext.Request.Query["type"].ToString();
-      // Console.WriteLine($"\n\n{skills.Length},{skillsArray.Length <= 1},{skillsArray[0]},{skillsArray.Length}\n\n");
-      if (!String.IsNullOrEmpty(type) && skills.Length < 1)
+      if (!String.IsNullOrEmpty(type))
       {
         return await _context.TblJobs.Where(data => data.Type == type).ToListAsync();
-      }
-      else if (!String.IsNullOrEmpty(type) && !skills.Length < 1)
-      {
-        return await _context.TblJobs.Where(jobtype => jobtype.Type == type).ToListAsync();
       }
       return await _context.TblJobs.ToListAsync();
     }
 
     // GET: api/Job/5
+    /// <summary>Get particular job detail for job detail page</summary>
     [HttpGet("{id}")]
     public async Task<ActionResult<TblJob>> GetTblJob(int id)
     {
@@ -54,6 +52,8 @@ namespace WebApi.Controllers
       return tblJob;
     }
 
+    //company posted jobs
+    /// <summary>Get Total jobs posted by single company using company id</summary>
     [HttpGet("retievetotaljobs/{id}")]
     public async Task<ActionResult<IEnumerable<TblJob>>> GetTotalJobsPosted(int id)
     {
@@ -67,6 +67,7 @@ namespace WebApi.Controllers
     }
 
     // PUT: api/Job/5
+    /// <summary>Edit particular job using the id</summary>
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblJob(int id, TblJob tblJob)
     {
@@ -97,16 +98,19 @@ namespace WebApi.Controllers
     }
 
     // POST: api/Job
+    /// <summary>posting a new job by company</summary>
     [HttpPost]
     public async Task<ActionResult<TblJob>> PostTblJob(TblJob tblJob)
     {
+      // TblCompany data = _context.TblCompany.Single(x=>x.);
       _context.TblJobs.Add(tblJob);
       await _context.SaveChangesAsync();
-
       return CreatedAtAction("GetTblJob", new { id = tblJob.Id }, tblJob);
     }
 
     // DELETE: api/Job/5
+    /// <summary>Delete a particular job</summary>
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteTblJob(int id)
     {

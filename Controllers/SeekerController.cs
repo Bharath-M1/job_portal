@@ -59,6 +59,7 @@ namespace WebApi.Controllers
 
 
     // PUT: api/Seeker/5
+    /// <summary>Edit particular seeker</summary>
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblSeeker(int id, TblSeeker tblSeeker)
     {
@@ -131,6 +132,7 @@ namespace WebApi.Controllers
 
 
     // DELETE: api/Seeker/5
+    /// <summary>Delete particular seeker</summary>
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteTblSeeker(int id)
     {

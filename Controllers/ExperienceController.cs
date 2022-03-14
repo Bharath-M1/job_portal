@@ -22,6 +22,7 @@ namespace WebApi.Controllers
     }
 
     // GET: api/Experience
+    /// <summary>Getting all users expriences</summary>
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TblExperience>>> GetTblExperiences()
     {
@@ -29,6 +30,7 @@ namespace WebApi.Controllers
     }
 
     // GET: api/Experience/5
+    /// <summary>fetching single user experience using their user id</summary>
     [HttpGet("{id}")]
     public async Task<ActionResult<TblExperience>> GetTblExperience(int id)
     {
@@ -43,6 +45,8 @@ namespace WebApi.Controllers
     }
 
     // PUT: api/Experience/5
+    /// <summary>Updating paricular users expreicence</summary>
+
     [HttpPut("{id}")]
     public async Task<IActionResult> PutTblExperience(int id, TblExperience tblExperience)
     {
@@ -73,6 +77,8 @@ namespace WebApi.Controllers
     }
 
     // POST: api/Experience
+    /// <summary>Adding new experience</summary>
+
     [HttpPost]
     public async Task<ActionResult<TblExperience>> PostTblExperience(TblExperience tblExperience)
     {
@@ -86,6 +92,8 @@ namespace WebApi.Controllers
     }
 
     // DELETE: api/Experience/5
+    /// <summary>Removing a user experience using userid</summary>
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteTblExperience(int id)
     {
