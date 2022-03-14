@@ -25,6 +25,18 @@ namespace WebApi.Controllers
     [HttpGet]
     public async Task<ActionResult<IEnumerable<TblJob>>> GetTblJobs()
     {
+      // string skills = HttpContext.Request.Query["skills"].ToString();
+      // string[] skillsArray = skills.Split(',');
+      string type = HttpContext.Request.Query["type"].ToString();
+      // Console.WriteLine($"\n\n{skills.Length},{skillsArray.Length <= 1},{skillsArray[0]},{skillsArray.Length}\n\n");
+      if (!String.IsNullOrEmpty(type) && skills.Length < 1)
+      {
+        return await _context.TblJobs.Where(data => data.Type == type).ToListAsync();
+      }
+      else if (!String.IsNullOrEmpty(type) && !skills.Length < 1)
+      {
+        return await _context.TblJobs.Where(jobtype => jobtype.Type == type).ToListAsync();
+      }
       return await _context.TblJobs.ToListAsync();
     }
 
@@ -34,6 +46,18 @@ namespace WebApi.Controllers
     {
       var tblJob = await _context.TblJobs.FindAsync(id);
 
+      if (tblJob == null)
+      {
+        return NotFound();
+      }
+
+      return tblJob;
+    }
+
+    [HttpGet("retievetotaljobs/{id}")]
+    public async Task<ActionResult<IEnumerable<TblJob>>> GetTotalJobsPosted(int id)
+    {
+      var tblJob = await _context.TblJobs.Include(data => data.CompanyId).Where(data => data.CompanyId == id).ToListAsync();
       if (tblJob == null)
       {
         return NotFound();

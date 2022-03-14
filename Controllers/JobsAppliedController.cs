@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 using WebApi.Data;
 using WebApi.Models;
 
@@ -33,6 +34,22 @@ namespace WebApi.Controllers
     public async Task<ActionResult<TblJobsApplied>> GetTblJobsApplied(int id)
     {
       var tblJobsApplied = await _context.TblJobsApplieds.FindAsync(id);
+
+      if (tblJobsApplied == null)
+      {
+        return NotFound();
+      }
+
+      return tblJobsApplied;
+    }
+
+
+
+    // GET: api/JobsApplied/5
+    [HttpGet("jobpostapplicant/{id}")]
+    public async Task<ActionResult<IEnumerable<TblJobsApplied>>> GetJobApplied(int id)
+    {
+      var tblJobsApplied = await _context.TblJobsApplieds.Where(data => data.JobId == id).Include(d => d.Seeker).ToListAsync();
 
       if (tblJobsApplied == null)
       {

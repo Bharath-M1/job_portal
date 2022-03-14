@@ -18,11 +18,10 @@ namespace WebApi.Models
     public int? SeekerId { get; set; }
     [Column("applied_on", TypeName = "datetime")]
     public DateTime? AppliedOn { get; set; }
-    [JsonIgnore]
     [ForeignKey(nameof(JobId))]
     public virtual TblJob? Job { get; set; }
-    [JsonIgnore]
     [ForeignKey(nameof(SeekerId))]
+    // [InverseProperty(nameof(TblSeeker.Id))]
     public virtual TblSeeker? Seeker { get; set; }
   }
 }
