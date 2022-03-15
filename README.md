@@ -1,6 +1,6 @@
 
 
-![Logo](https://job360store.blob.core.windows.net/file-container/MicrosoftTeams-image.png)
+![Logo](https://job360store.blob.core.windows.net/file-container/logo.png)
 
 The web application “Job360” provides an easy and convenient search application for the job seekers to find their desired jobs and for the recruiters to find the right candidate. Job seekers from any background can search for the current job openings. Job seekers can register with the application and update their details and skill set. They can search for available jobs and apply to their desired positions. To make things handy, the user functionalities are developed as an web application. Employer can register with the application and posts their current openings. They can view the Job applicants and can screen them according to the best fit. 
 
