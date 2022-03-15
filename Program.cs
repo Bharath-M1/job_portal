@@ -31,9 +31,11 @@ var builder = WebApplication.CreateBuilder(args);
     })
   .AddJsonOptions(x =>
     x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+  //DbConfig
   services.AddDbContext<jobPortalDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("AzureStorage"), options => options.EnableRetryOnFailure()));
   services.AddEndpointsApiExplorer();
+  //Swagger config
   services.AddSwaggerGen(c =>
     {
       c.SwaggerDoc("v1", new OpenApiInfo
@@ -63,6 +65,7 @@ var builder = WebApplication.CreateBuilder(args);
               { securitySchema, new[] { "Bearer" } }
           });
     });
+  //Configuration and DI
   services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
   services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
   services.AddScoped<IUserService, UserService>();
