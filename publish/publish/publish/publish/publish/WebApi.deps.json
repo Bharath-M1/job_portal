@@ -11,7 +11,6 @@
         "dependencies": {
           "Azure.Storage.Blobs": "12.9.1",
           "BCrypt.Net-Next": "4.0.2",
-          "Google.Apis": "1.56.0",
           "MailKit": "3.1.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.0",
           "Microsoft.EntityFrameworkCore.Design": "6.0.1",
@@ -1445,28 +1444,6 @@
           "lib/net5.0/BCrypt.Net-Next.dll": {
             "assemblyVersion": "4.0.2.0",
             "fileVersion": "4.0.2.0"
-          }
-        }
-      },
-      "Google.Apis/1.56.0": {
-        "dependencies": {
-          "Google.Apis.Core": "1.56.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Google.Apis.dll": {
-            "assemblyVersion": "1.56.0.0",
-            "fileVersion": "1.56.0.0"
-          }
-        }
-      },
-      "Google.Apis.Core/1.56.0": {
-        "dependencies": {
-          "Newtonsoft.Json": "13.0.1"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Google.Apis.Core.dll": {
-            "assemblyVersion": "1.56.0.0",
-            "fileVersion": "1.56.0.0"
           }
         }
       },
@@ -3859,20 +3836,6 @@
       "sha512": "sha512-LyNKpIpr4GraRD9+xlTviyxxbZpF6J4xJf7DvraC1mR8PSN/KonGc4rt8C/fjkD3vaEvgA7BcvsbHFCOjgczyQ==",
       "path": "bcrypt.net-next/4.0.2",
       "hashPath": "bcrypt.net-next.4.0.2.nupkg.sha512"
-    },
-    "Google.Apis/1.56.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Oi/M8PmtmXo+3gBX0ZxaijQULuZKnNjDNIceRA+OcUUn3pmYhljGSAWcsWUY64KgdzurM9kF5MoCSWqevzR/UA==",
-      "path": "google.apis/1.56.0",
-      "hashPath": "google.apis.1.56.0.nupkg.sha512"
-    },
-    "Google.Apis.Core/1.56.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-mhntBSe9/bXVP6EeB2g+Db6N4dzVYL12t+nkVcNTZzaI6fEFIp1l5BggmMMk6vY1Q/HUpZ5iHA/+h7j2pWWX5w==",
-      "path": "google.apis.core/1.56.0",
-      "hashPath": "google.apis.core.1.56.0.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",
