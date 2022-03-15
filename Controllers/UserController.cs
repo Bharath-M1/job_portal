@@ -92,8 +92,8 @@ namespace WebApi.Controllers
         {
           var mail = new MailRequest();
           mail.ToEmail = tblUser.Email;
-          mail.Subject = "job access created";
-          mail.Body = "some checking message";
+          mail.Subject = "job360 access created";
+          mail.Body = "Happy to welcome you";
           await _mailService.SendEmailAsync(mail);
           tblUser.Password = BC.HashPassword(tblUser.Password);
           _context.TblUsers.Add(tblUser);
