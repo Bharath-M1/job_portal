@@ -11,7 +11,7 @@ namespace WebApi.Services
 
     public AzureStorage(IConfiguration configuration)
     {
-      _storageConnectionString = configuration.GetConnectionString("AzureStorage");
+      _storageConnectionString = configuration.GetConnectionString("BlobStorage");
     }
 
     public async Task<string> UploadAsync(Stream fileStream, string fileName, string contentType)
